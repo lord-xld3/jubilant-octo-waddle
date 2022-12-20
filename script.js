@@ -8,37 +8,44 @@ const passwordText = document.querySelector("#password")
 generateBtn.addEventListener("click",parseInput)
 
 function parseInput(){
-  i = document.getElementById("pwLength")
-  if (i.value<8 || i.value>16){
-    alert("Length must be between 8 and 16")
+  var inputLength = document.getElementById("pwLength")
+  if (inputLength.value<1 || inputLength.value>16){
+    alert("Length must be between 1 and " + 16)
   }
-  j = document.getElementById("useOption")
-  k = document.getElementById("stringOption")
-selectedArray = (j.value=="useBinary")
-    ? "01"
-  :(j.value=="useHex")
-    ? validNums + "ABCDEF"
-    :selectedArray
-  switch(k.value){
-    case("useLower"):
-    selectedArray += caseLower
+  var useBin = document.getElementById("useBin")
+  var useHex = document.getElementById("useHex")
+  var useLower = document.getElementById("useLower")
+  var useUpper = document.getElementById("useUpper")
+  var useSymbols = document.getElementById("useSymbols")
+  var useNums = document.getElementById("useNums")
 
-    case("useUpper"):
-    selectedArray += caseUpper
+  var selectedArray=(useBin.checked)?"10":(useHex.checked)?validNums + "abcdef":""
+  selectedArray+=(useLower.checked)?caseLower:""
+  selectedArray+=(useUpper.checked)?caseUpper:""
+  selectedArray+=(useSymbols.checked)?validSymbols:""
+  selectedArray+=(useNums.checked)?validNums:""
+  selectedArray=(selectedArray=="")?validNums:selectedArray
+  Array.from(selectedArray)
 
-    case("useSymbol"):
-    selectedArray += validSymbols
-
-    case("useNums"):
-    selectedArray += validNums
-
-    default:
-    selectedArray = "test"
+  if (useBin.checked || useHex.checked) {
+    var rngStr=""
+    for (t=0; rngStr.length<1+inputLength.value*1; t++){
+      rngStr += (Math.floor(Math.random()*(1+inputLength.value*1))+"")
+    }
+    rngStr=rngStr*1
+    var password = (selectedArray=="10")
+    ?rngStr.toString(2)
+      :(selectedArray=="1234567890abcdef")
+    ? rngStr.toString(16)
+      :(selectedArray==validNums)
+    ? password = rngStr.toString()
+      :password
+    Array.from(password)
+    return passwordText.value = password.slice(1,1+inputLength.value*1)
   }
-  var char
-  for (t=0; t<i.value; t++){
-    char+=selectedArray[Math.floor(Math.random()*i.value+1)]
+  var password=""
+  for(t=0; password.length<inputLength.value; t++){
+    password += selectedArray[(Math.floor(Math.random()*(selectedArray.length))+"")]
   }
-  passwordText.value = char
+  return passwordText.value = password
 }
-  
