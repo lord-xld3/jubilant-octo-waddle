@@ -51,6 +51,8 @@ header {
 }
 
 .card-body {
+  display: flex;
+  flex-flow: wrap;
   min-height: 100px;
 }
 
