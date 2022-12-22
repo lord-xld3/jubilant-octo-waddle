@@ -3,13 +3,10 @@ const caseLower="abcdefghijklmnopqrstuvwxyz"
 const caseUpper="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const validNums="1234567890"
 const validSymbols=" `~!@#$%^&*()_+-=/\\[]{}?.,><:;\'\""
-var mainInterface=document.getElementById("inputInterface")
 var inputElements=document.getElementsByTagName("input")
 var stringOptions=document.getElementById("inputStringOptions")
 var generateBtn=document.getElementById("generate")
 var cryptBtn=document.getElementById("crypt")
-var textInput=document.getElementById("textInput")
-var textHash=document.getElementById("textHash")
 var textTag=document.getElementsByClassName("outputField")
 
 //All buttons should be "smart"
@@ -48,8 +45,8 @@ function parseInput(){
   var selectedArray=""
 
 //Clear existing password from screen
- textTag[0].textContent=""
- textTag[1].textContent=""
+ textTag[0].value=""
+ textTag[1].value=""
   
 //Unicode generator between 0000 and FFFF
   if (useUni.checked) {
@@ -60,7 +57,7 @@ function parseInput(){
       }
       password+="&#" + uniChar + ";"
     }
-    return textTag[0].textContent=password
+    return textTag[0].value=password
   }
 
 //Conditional logic on values to determine which character set to use
@@ -80,7 +77,7 @@ function parseInput(){
   for(t=0; password.length<inputLength.value; t++){
     password+=selectedArray[(Math.floor(Math.random()*(selectedArray.length))+"")]
   }
-  return textTag[0].textContent=password
+  return textTag[0].value=password
 }
 
 /*-------encrypt0r---------
@@ -112,31 +109,39 @@ $
 */
 
 function cryptMe(){
+
+  var textInput=document.getElementById("textInput")
+  var textHash=document.getElementById("textHash")
   
   // Clear output
   var outputText=""
   var outputHash=""
-  textTag[0].textContent=""
-  textTag[1].textContent=""
+  textTag[0].value=""
+  textTag[1].value=""
 
-  if (textHash.textContent.length < textInput.textContent.length){
+  if (textHash.value.length==0){
     // Generate hash
-    for (i=0; i<textInput.length; i++){
-      hashInt=Math.floor(Math.random()*65536) // Random INT16 (0-65536)
-      outputText+=String.fromCharCode((textInput.textContent.charCodeAt(i)) ^ (hashInt)) //XOR ^ and assign to output
+    for (i=0; i<textInput.value.length; i++){
+      hashInt=Math.floor((Math.random()*65535)+1) // Random INT16 (1-65535)
+      hashStr=hashInt.toString()
+      while (hashStr.length<5){
+        hashStr+="0"
+      }
+      outputText+=String.fromCharCode((textInput.value.charCodeAt(i)) ^ (hashInt)) //XOR ^ and assign to output
       outputHash+=String.fromCharCode(hashInt) //Assign hash to string
     }
-    textTag[0].textContent=outputText
-    textTag[1].textContent=outputHash
+    textTag[0].value=outputText
+    textTag[1].value=outputHash
   }
 
-  else {
+  else if (textHash.value.length >= textInput.value.length) {
     //Calculate output with hash
-    for (i=0; i<textInput.length; i++){
+    for (i=0; i<textInput.value.length; i++){
       //XOR ^ and assign to output
-      outputText+=String.fromCharCode((textInput.textContent.charCodeAt(i)) ^ (textHash.textContent.charCodeAt(i)))
+      outputText+=String.fromCharCode((textInput.value.charCodeAt(i)) ^ (textHash.value.charCodeAt(i)))
     }
-    pTag.textContent="OUT:"+outputText
-    textTag[0].appendChild(pTag)
+    textTag[0].value=outputText
   }
+
+  else return alert("Input longer than hash\nIN:" + textInput.value.length + " HASH:" + textHash.value.length)
 }

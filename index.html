@@ -9,53 +9,64 @@
   </head>
   <body>
     <div class="wrapper">
-        <div class="card-password">
-          <h1>Password Generator</h1>
-          <form id="inputInterface">
-            <input type="number" id="pwLength" min="1" max="8192" placeholder="1-8192"> Length</number>
 
-            <input type="radio" id="useBin" name="useOption">
-            <label for="useBinary">Bin</label>
+      <div class="genContainer">
+        <h1>Password Generator</h1>
+        <button id="generate" class="btn">Create</button>
+      </div>
+      
+      <div class="genContainer">
+        <label for="pwLength">Length :</label>
+        <input type="number" id="pwLength" name="pwLength" min="1" max="8192" placeholder="1-8192">
 
-            <input type="radio" id="useHex" name="useOption">
-            <label for="useHex">Hex</label>
+        <input type="radio" id="useBin" name="useOption">
+        <label for="useBinary">Bin</label>
 
-            <input type="radio" id="useUni" name="useOption">
-            <label for="useUni">Unicode</label>
+        <input type="radio" id="useHex" name="useOption">
+        <label for="useHex">Hex</label>
 
-            <input type="radio" id="useString" name="useOption" checked="true">
-            <label for="useString">String</label>
+        <input type="radio" id="useUni" name="useOption">
+        <label for="useUni">Unicode</label>
 
-              <div id="inputStringOptions">
-                <input type="checkbox" id="stringLower" name="stringLower">
-                <label for="stringLower">case</label>
+        <input type="radio" id="useString" name="useOption" checked="true">
+        <label for="useString">String</label>
+      </div>
+
+      <div class="genContainer">
+        <div id="inputStringOptions">
+          <input type="checkbox" id="stringLower" name="stringLower">
+          <label for="stringLower">case</label>
             
-                <input type="checkbox" id="stringUpper" name="stringUpper">
-                <label for="stringUpper">CASE</label>
+          <input type="checkbox" id="stringUpper" name="stringUpper">
+          <label for="stringUpper">CASE</label>
 
-                <input type="checkbox" id="stringSymbols" name="stringSymbols">
-                <label for="stringSymbols">$ymbols</label>
+          <input type="checkbox" id="stringSymbols" name="stringSymbols">
+          <label for="stringSymbols">$ymbols</label>
 
-                <input type="checkbox" id="stringNums" name="stringNums" checked="true">
-                <label for="stringNums">0-9</label>
-              </div>
-
-            <button id="generate" class="btn">Create</button>
-          </form>
+          <input type="checkbox" id="stringNums" name="stringNums" checked="true">
+          <label for="stringNums">0-9</label>
         </div>
-        <div class="card-cryptor">
-          <h1>Crypt0r</h1>
-          <form><div>
-            <textarea id="textInput" placeholder="Input"></textarea>
-            <textarea id="textHash" placeholder="Hash"></textarea>
-          </div>
-            <button id="crypt" class="btn">Crypt</button>
-          </form>
-        </div>
+      </div>
+
+      <div class="genContainer" id="cryptor">
+        <h1>Crypt0r</h1>
+        <button id="crypt" class="btn">Crypt</button>
+      </div>
+
+      <div class="genContainer">
+        <h3>IN</h3>
+        <textarea id="textInput" placeholder="Input"></textarea>
+        <h3>HASH</h3>
+        <textarea id="textHash" placeholder="Hash"></textarea>
+      </div>
+      
+      <div class="genContainer">
         <h3>OUT</h3>
         <textarea class="outputField" placeholder="Output"></textarea>
         <h3>HASH</h3>
         <textarea class="outputField" placeholder="Hash"></textarea>
+      </div>
+
     </div>
     <script src="script.js"></script>
   </body>
