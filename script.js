@@ -69,16 +69,20 @@ function parseInput(){
 }
 
 function cryptMe(){
-// Clear output
-  let outputText=""; let outputHash=""; textTag[0].value="" 
+  let uniMin=document.getElementById("uniMin")
+  let uniMax=document.getElementById("uniMax")
+  if (uniMin.value<34 || uniMax.value<34 || uniMax.value<uniMin.value) return alert("Enter valid unicode range for Crypt0r")
+
+ // Clear output
+ let outputText=""; let outputHash=""; textTag[0].value=""
   
 //If hash text is empty
   if (textTag[1].value.length==0){
     for (i=0; i<textInput.value.length; i++){
     // Random INT16 (34-6809) is a safe range
-      hashInt=(Math.floor(Math.random()*6775))+34
+      hashInt=(Math.floor(Math.random()*uniMax.value))+uniMin.value
       xorInt=(textInput.value.charCodeAt(i) ^ hashInt)
-      if (xorInt<34 || xorInt>6809){--i} // Keep hash/output within valid char range
+      if (xorInt<uniMin.value || xorInt>uniMax.value){--i} // Keep hash/output within valid char range
       else{
       // XOR => output
         outputText+=String.fromCharCode(xorInt)
