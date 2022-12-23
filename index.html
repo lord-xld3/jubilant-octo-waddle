@@ -12,58 +12,81 @@
 
       <div class="genContainer">
         <h1>Password Generator</h1>
+        <button id="helpCrypt" class="helpBtn">?</button>
         <button id="generate" class="btn">Create</button>
       </div>
       
       <div class="genContainer">
-        <label for="pwLength">Length :</label>
-        <input type="number" id="pwLength" name="pwLength" min="1" max="8192" placeholder="1-8192">
-
-        <input type="radio" id="useBin" name="useOption">
-        <label for="useBinary">Bin</label>
-
-        <input type="radio" id="useHex" name="useOption">
-        <label for="useHex">Hex</label>
-
-        <input type="radio" id="useUni" name="useOption">
-        <label for="useUni">Unicode</label>
-
-        <input type="radio" id="useString" name="useOption" checked="true">
-        <label for="useString">String</label>
+        <div>
+          <label for="pwLength">Length :</label>
+          <input type="number" id="pwLength" name="pwLength" min="1" max="8192" placeholder="1-8192">
+        </div>
+        <div>
+          <input type="radio" id="useBin" name="useOption">
+          <label for="useBinary">Bin</label>
+        </div>
+        <div>
+          <input type="radio" id="useHex" name="useOption">
+          <label for="useHex">Hex</label>
+        </div>
+        <div>
+          <input type="radio" id="useUni" name="useOption">
+          <label for="useUni">Unicode</label>
+        </div>
+        <div>
+          <input type="radio" id="useString" name="useOption" checked="true">
+          <label for="useString">String</label>
+        </div>
       </div>
 
       <div class="genContainer">
         <div id="inputStringOptions">
-          <input type="checkbox" id="stringLower" name="stringLower">
-          <label for="stringLower">case</label>
-            
-          <input type="checkbox" id="stringUpper" name="stringUpper">
-          <label for="stringUpper">CASE</label>
-
-          <input type="checkbox" id="stringSymbols" name="stringSymbols">
-          <label for="stringSymbols">$ymbols</label>
-
-          <input type="checkbox" id="stringNums" name="stringNums" checked="true">
-          <label for="stringNums">0-9</label>
+          <div>
+            <input type="checkbox" id="stringLower" name="stringLower">
+            <label for="stringLower">case</label>
+          </div>
+          <div>
+            <input type="checkbox" id="stringUpper" name="stringUpper">
+            <label for="stringUpper">CASE</label>
+          </div>
+          <div>
+            <input type="checkbox" id="stringSymbols" name="stringSymbols">
+            <label for="stringSymbols">$ymbols</label>
+          </div>
+          <div>
+            <input type="checkbox" id="stringNums" name="stringNums" checked="true">
+            <label for="stringNums">0-9</label>
+          </div>
         </div>
       </div>
 
       <div class="genContainer" id="cryptor">
         <h1>Crypt0r</h1>
-        <label for="uniMin">Unicode min:</label>
-        <input type="number" id="uniMin" name="uniMin" min="34" max="6774" placeholder="34-6774">
-        <label for="uniMax">Unicode max:</label>
-        <input type="number" id="uniMax" name="uniMax" min="35" max="6775" placeholder="35-6775">
+        <button id="helpCrypt" class="helpBtn">?</button>
+        <div>
+          <label for="uniMin">Unicode min:</label>
+          <input type="number" id="uniMin" name="uniMin" min="34" max="3404" placeholder="34-3404">
+        </div>
+        <div>
+          <label for="uniMax">Unicode max:</label>
+          <input type="number" id="uniMax" name="uniMax" min="80" max="6775" placeholder="80-6775">
+        </div>
         <button id="crypt" class="btn">Crypt</button>
       </div>
 
       <div class="genContainer">
-        <h3>IN</h3>
-        <textarea id="textInput" placeholder="Input"></textarea>
-        <h3>OUT</h3>
-        <textarea class="outputField" placeholder="Output"></textarea>
-        <h3>HASH</h3>
-        <textarea class="outputField" placeholder="Hash"></textarea>
+        <div>
+          <h3>IN</h3>
+          <textarea id="textInput" placeholder="Input"></textarea>
+        </div>
+        <div>
+          <h3>OUT</h3>
+          <textarea class="outputField" placeholder="Output"></textarea>
+        </div>
+        <div>
+          <h3>HASH</h3>
+          <textarea class="outputField" placeholder="Hash"></textarea>
+        </div>
       </div>
       
     </div>
